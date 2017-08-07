@@ -82,5 +82,3 @@ inline fun <reified T : Serializable> T.findAll(crossinline functor: SelectQuery
         }
     }
 }
-
-inline fun <reified T : Serializable> T.findAll(): List<T> = findAll { }
