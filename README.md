@@ -1,5 +1,5 @@
 [![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0)
-# Kdb
+# KDao
 
 # Anko sqlite扩展,通过反射直接创建表,结合Gson进行数据的反解析
 
@@ -20,7 +20,7 @@
 
 ## Feature · 特性
 ```
-* 核心理念，对人类友好,Kdb将会给您完美的使用体验
+* 核心理念，对人类友好,KDao将会给您完美的使用体验
 ```
 ```
 * 通过反射自动建表
@@ -35,14 +35,14 @@
 
 ```kotlin
         //配置 数据库名称，cursorFactory，数据库版本
-         Kdb.init(this, KdbConfig("kdb_example", null, 1))
+         KDao.init(this, KDaoConfig("KDao_example", null, 1))
 ```
 
-在Application或是首个Activity中，初始化Kdb。
+在Application或是首个Activity中，初始化KDao。
 
 ### Entities · 实体
 实体类无需做任何处理。
-Kdb在数据库中自动为您打理好一切。
+KDao在数据库中自动为您打理好一切。
 
 注解：@PrimaryKey 用来指定主键。@Ignore用于忽略属性
 ```kotlin
@@ -131,7 +131,7 @@ data class UserData(
 ### Update Entity directly or Save Entity when it doesn't exist · 直接 更新或保存实体 （如果实体是未保存过的话）
 ```kotlin
         var user5 = UserData(90, "white", 77, false)	// 90 is a new primary key
-        user5.updateOrSave()	// Kdb will save a new data
+        user5.updateOrSave()	// KDao will save a new data
 ```
 
 ### Update Entity based on PrimaryKey · 根据primary key 更新实体
@@ -213,8 +213,8 @@ two marks: % and _ · 两个通配符：% 和 _
 
 _ : one amount content · 一个位置的内容
 
-for example:	"Kdb%" -> find values witch is starting with "Kdb"
+for example:	"KDao%" -> find values witch is starting with "KDao"
 
-例如，"Kdb%" -> 查询所有以"Kdb"开头的数据
+例如，"KDao%" -> 查询所有以"KDao"开头的数据
 
 ```

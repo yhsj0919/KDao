@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:padding="8dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="xyz.yhsj.kdbexaple.MainActivity"
+    tools:context="xyz.yhsj.kdaoexample.MainActivity"
     tools:showIn="@layout/activity_main">
 
     <TextView
