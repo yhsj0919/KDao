@@ -80,7 +80,7 @@ data class UserData(
         list.saveAll(replace = true)
                 
 ```
-### Save one to more Entity   one to one· 直接一对多,一对一对象
+### Save one to more , one to one  Entity · 保存一对多,一对一对象
 注:子对象暂时不支持查询(内部通过转换json实现)
 ```kotlin
          School(name = "测试包含对象", student = (1..10).map { UserData(name = "批量$it", age = it, isChild = it % 2 == 0) }).save()
