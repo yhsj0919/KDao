@@ -2,10 +2,10 @@ package xyz.yhsj.kdb.sqlite.operator
 
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
-import android.util.Log.e
 import com.google.gson.Gson
 import xyz.yhsj.kdb.sqlite.annotation.Ignore
 import xyz.yhsj.kdb.sqlite.annotation.PrimaryKey
+import xyz.yhsj.kdb.sqlite.e
 import java.io.Serializable
 import java.lang.Exception
 import kotlin.reflect.full.declaredMemberProperties
@@ -40,7 +40,7 @@ fun <T : Serializable> getValuePairs(data: T): Map<String, Any> {
             .filter { it.get(data) != null }
             .filter { !it.annotations.map { it.annotationClass }.contains(Ignore::class) }
             .associate {
-                e("save","${it.name}  ->  ${it.get(data)}" )
+                "".e("save", "${it.name}  ->  ${it.get(data)}")
                 it.name to it.get(data).let {
                     when (it) {
                         true -> "true"

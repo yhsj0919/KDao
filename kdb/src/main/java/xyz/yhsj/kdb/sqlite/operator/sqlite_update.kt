@@ -44,7 +44,7 @@ inline fun <reified T : Serializable> T.update(): Int {
     val valuePairs = properties
             .filter { !it.annotations.map { it.annotationClass }.contains(Ignore::class) }
             .associate {
-                e("update", "${it.name}:${it.get(this).toString()}")
+                "".e("update", "${it.name}:${it.get(this).toString()}")
                 it.name to it.get(this).let {
                     when (it) {
                         true -> "true"

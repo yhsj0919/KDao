@@ -33,9 +33,9 @@ fun <T : Any> SQLiteDatabase.tryCreateTable(data: T) {
 
                 if (it.annotations.map { it.annotationClass }.contains(PrimaryKey::class)) {
                     pair.copy(second = pair.second + PRIMARY_KEY)
-                            .apply { e("PrimaryKey", "$first   :${second.name}") }
+                            .apply { "".e("PrimaryKey", "$first   :${second.name}") }
                 } else {
-                    pair.apply { e("NOT PrimaryKey", "$first   :${second.name}") }
+                    pair.apply { "".e("NOT PrimaryKey", "$first   :${second.name}") }
                 }
 
             }.toList().toTypedArray()
