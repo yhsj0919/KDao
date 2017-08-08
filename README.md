@@ -1,9 +1,9 @@
 [![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0)
 # Kdb
 
-#Anko sqlite扩展,通过反射直接创建表,结合Gson进行数据的反解析
+# Anko sqlite扩展,通过反射直接创建表,结合Gson进行数据的反解析
 
-#项目参考修改了https://github.com/senyuyuan/Gluttony  对存储,数据解析做了一定的改变
+# 项目参考修改了https://github.com/senyuyuan/Gluttony  对存储,数据解析做了一定的改变
 
 ## Content · 目录
 
