@@ -2,7 +2,9 @@ package xyz.yhsj.kdb.sqlite.operator
 
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
+import android.util.Log.e
 import com.google.gson.Gson
+import xyz.yhsj.kdb.sqlite.annotation.Ignore
 import xyz.yhsj.kdb.sqlite.annotation.PrimaryKey
 import java.io.Serializable
 import java.lang.Exception
@@ -36,12 +38,14 @@ fun <T : Serializable> getValuePairs(data: T): Map<String, Any> {
 
     return properties
             .filter { it.get(data) != null }
+            .filter { !it.annotations.map { it.annotationClass }.contains(Ignore::class) }
             .associate {
+                e("save","${it.name}  ->  ${it.get(data)}" )
                 it.name to it.get(data).let {
                     when (it) {
                         true -> "true"
                         false -> "false"
-                        is String, is Int, is Float, is Double -> it
+                        is String, is Long, is Int, is Float, is Double -> it
                         else -> Gson().toJson(it)
                     }
                 }

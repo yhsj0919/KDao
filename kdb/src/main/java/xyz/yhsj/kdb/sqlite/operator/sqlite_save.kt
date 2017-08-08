@@ -3,6 +3,7 @@ package xyz.yhsj.kdb.sqlite.operator
 import android.database.sqlite.SQLiteDatabase
 import org.jetbrains.anko.db.*
 import xyz.yhsj.kdb.Kdb
+import xyz.yhsj.kdb.sqlite.annotation.Ignore
 import xyz.yhsj.kdb.sqlite.annotation.PrimaryKey
 import xyz.yhsj.kdb.sqlite.e
 import java.io.Serializable
@@ -19,6 +20,7 @@ fun <T : Any> SQLiteDatabase.tryCreateTable(data: T) {
     val properties = mClass.declaredMemberProperties
 
     val tablePairs = properties
+            .filter { !it.annotations.map { it.annotationClass }.contains(Ignore::class) }
             .associate {
                 val pair = it.name to it.returnType.classifier.let {
                     when (it) {

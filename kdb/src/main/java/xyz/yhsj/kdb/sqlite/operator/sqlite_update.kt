@@ -7,6 +7,7 @@ import xyz.yhsj.kdb.sqlite.e
 import org.jetbrains.anko.db.UpdateQueryBuilder
 import org.jetbrains.anko.db.update
 import xyz.yhsj.kdb.Kdb
+import xyz.yhsj.kdb.sqlite.annotation.Ignore
 import java.io.Serializable
 import kotlin.reflect.full.declaredMemberProperties
 
@@ -40,17 +41,19 @@ inline fun <reified T : Serializable> T.update(): Int {
         if (it.annotations.map { it.annotationClass }.contains(PrimaryKey::class)) propertyValue = it.get(this)
     }
     if (propertyValue == null) throw Exception("${mClass.simpleName} 类型没有设置PrimaryKey， 或是  实例的PrimaryKey属性不能为null")
-    val valuePairs = properties.associate {
-        e("reflect_values", "${it.name}:${it.get(this).toString()}")
-        it.name to it.get(this).let {
-            when (it) {
-                true -> "true"
-                false -> "false"
-                is String, is Int, is Float, is Double -> it
-                else -> Gson().toJson(it)
-            }
-        }
-    }.toList().toTypedArray()
+    val valuePairs = properties
+            .filter { !it.annotations.map { it.annotationClass }.contains(Ignore::class) }
+            .associate {
+                e("update", "${it.name}:${it.get(this).toString()}")
+                it.name to it.get(this).let {
+                    when (it) {
+                        true -> "true"
+                        false -> "false"
+                        is String, is Int, is Float, is Double -> it
+                        else -> Gson().toJson(it)
+                    }
+                }
+            }.toList().toTypedArray()
 
     return Kdb.database.use {
         this@update.updateByKey(propertyValue!!, *valuePairs)

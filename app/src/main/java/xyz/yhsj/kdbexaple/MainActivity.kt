@@ -70,7 +70,7 @@ class MainActivity : BaseActivity() {
      * 保存列表
      */
     private fun saveAll() {
-        val list = (1..1000).map { UserData(name = "批量$it", age = it, isChild = it % 2 == 0) }
+        val list = (1..1000).map { UserData(name = "批量$it", age = it, isChild = it % 2 == 0, thisIgnore = "这个是忽略的属性$it") }
 
         val time = Date().time
 
@@ -81,9 +81,8 @@ class MainActivity : BaseActivity() {
 
 
     private fun find() {
-        val user1 = UserData().findOneByKey(33)
-        e { user1?.name ?: "no user witch id is 30" }
-
+        val user1: UserData? = UserData().findOneByKey(33)
+        e { "$user1" }
 
         val user2 = UserData().findOne {
             condition {
@@ -94,7 +93,6 @@ class MainActivity : BaseActivity() {
         }
         e { user2?.name ?: "no user witch age is between 7..16 and isChild is not false" } //批量8
 
-//
         val userList = UserData().findAll {}
         e { "${userList.size}" } // 1000
 

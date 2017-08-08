@@ -1,5 +1,6 @@
 package xyz.yhsj.kdbexaple
 
+import xyz.yhsj.kdb.sqlite.annotation.Ignore
 import xyz.yhsj.kdb.sqlite.annotation.PrimaryKey
 import java.io.Serializable
 
@@ -12,5 +13,7 @@ data class UserData(
         var id: Int? = null,
         var name: String = "",
         var age: Int = -1,
-        var isChild: Boolean = false
+        var isChild: Boolean = false,
+        @Ignore
+        var thisIgnore: String = "thisIgnore"
 ) : Serializable
