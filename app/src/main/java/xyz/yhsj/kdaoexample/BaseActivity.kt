@@ -33,7 +33,7 @@ abstract class BaseActivity : AppCompatActivity() {
     /**
      * 设置视图之后
      */
-    protected fun afterSetContentView() {}
+    open protected fun afterSetContentView() {}
 
     /**
      * 返回布局id

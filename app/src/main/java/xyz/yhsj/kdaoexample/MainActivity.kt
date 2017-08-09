@@ -1,5 +1,6 @@
 package xyz.yhsj.kdaoexample
 
+import android.content.Intent
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.Toolbar
 import kotlinx.android.synthetic.main.activity_main.*
@@ -8,6 +9,7 @@ import org.jetbrains.anko.db.SqlOrderDirection
 import xyz.yhsj.kdao.sqlite.condition
 import xyz.yhsj.kdao.sqlite.operator.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 class MainActivity : BaseActivity() {
     /**
@@ -29,11 +31,19 @@ class MainActivity : BaseActivity() {
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
-            School(name = "测试包含对象", student = (1..10).map { UserData(name = "批量$it", age = it, isChild = it % 2 == 0) }).save()
 
-            val school = School().findOneByKey(1)
+            val juser = JavaUser("名字", 10, true)
 
-            println(school)
+            juser.thisIgnore = "这是忽略的"
+
+            juser.save()
+
+            val jusers = JavaUser().findAll { }
+
+            jusers.forEach {
+
+                println(it)
+            }
 
 
         }
@@ -51,6 +61,12 @@ class MainActivity : BaseActivity() {
         btnUpdate.setOnClickListener { update() }
 
         btnDelete.setOnClickListener { delete() }
+
+        btnOneMore.setOnClickListener {
+            School(name = "测试包含对象", student = (1..10).map { UserData(name = "批量$it", age = it, isChild = it % 2 == 0) }).save()
+            val school = School().findOneByKey(1)
+            println(school)
+        }
     }
 
     /**
@@ -70,7 +86,8 @@ class MainActivity : BaseActivity() {
      * 保存列表
      */
     private fun saveAll() {
-        val list = (1..1000).map { UserData(name = "批量$it", age = it, isChild = it % 2 == 0, thisIgnore = "这个是忽略的属性$it") }
+
+        val list = (1..1000).map { UserData(name = "批量$it", age = it, isChild = it % 2 == 0) }
 
         val time = Date().time
 

@@ -44,4 +44,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="删除" />
+
+    <Button
+        android:id="@+id/btnOneMore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="一对多" />
+
 </LinearLayout>

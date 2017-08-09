@@ -28,6 +28,8 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:design:25.3.1'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
     compile 'org.jetbrains.anko:anko-sqlite:0.10.1'
     compile project(':kdao')
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
 }
